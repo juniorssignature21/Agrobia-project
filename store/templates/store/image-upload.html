@@ -1,0 +1,9 @@
+{% block content %}
+<form action="{% url "home" %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">
+        Upload
+    </button>
+</form>
+{% endblock content %}

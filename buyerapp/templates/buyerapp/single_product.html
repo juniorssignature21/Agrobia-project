@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="product-banner">
+    <h1>
+        Single Products
+    </h1>
+    <div class="route">
+        <a href="{% url "home" %}">Home</a>&nbsp; /
+        <a href="">Shop</a>&nbsp;/
+        <a href="">Single Product</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <img src="{{product.image.url}}"  width="100%" id="ProductImg">
+        <div class="small-img-col">
+            <img src="{{product.imagesample2.url}}"  width="100%" class="SmallImg">
+            <img src="{{product.imagesample1.url}}" width="100%"  class="SmallImg">
+        </div>
+    </div>
+    <div class="col-2">
+        <h1>
+            {{product.name}}
+        </h1>
+        <h3>
+            <b>
+                N{{product.price}}
+            </b>
+        </h3>
+        <p>
+            {{product.description}}
+        </p>
+        <br>
+        <hr>
+        <br>
+        <b>
+           Type: {{product.productcategories}}
+        </b>
+        <br>
+        <br>
+        <b>
+            Weight: {{product.weight}} kg
+        </b>
+        <br>
+        <br>
+        {%  comment %} {% if not item %} {% endcomment %}
+        {% comment %} {% if cart_items %} {% endcomment %}
+        {% if cart_items %}
+        <div class="addtocart-btn">
+            <div class="btn-col">
+                <span>{{cart_items.quantity}}</span>
+            </div>
+            <div class="btn-col2">
+                <a  href="{% url "decrease_cart_quantity" product.id %}">
+                    <span>
+                        <b>-</b>
+                    </span>
+                </a>
+                
+                <a  href="{% url "increase_cart_quantity" product.id %}">
+                    <span>
+                        <b>+</b>
+                </span>
+            </a>
+            
+        </div>
+    </div>
+    {% comment %} {% endfor %} {% endcomment %}
+    {% comment %} {% else %} {% endcomment %}
+    <a href="{% url 'add_to_cart' product.id %}">
+        <button type="button" class="addtocart" value="{{product.id}}" id="add-cart">Add to cart</button>
+    </a>
+    {% endif %}
+
+
+        {% comment %} {% else %} {% endcomment %}
+        {% comment %} <a href="{% url 'add_to_cart' product.id %}">
+            <button type="button" class="addtocart" value="{{product.id}}" id="add-cart">Add to cart</button>
+           </a> {% endcomment %}
+        {% comment %} {% endif %} {% endcomment %}
+        <br>
+        <br>
+        <hr>
+        <div class="socials">
+            <b>
+                Share:
+            </b>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <a href="">
+                f
+            </a>
+            <a href="">
+                X
+            </a>
+            <a href="">
+                in
+            </a>
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+<script>
+    var ProductImg = document.getElementById("ProductImg");
+    var SmallImg = document.getElementsByClassName("SmallImg");
+
+        SmallImg[0].onclick = function()
+        {
+            ProductImg.src = SmallImg[0].src;
+        }
+        SmallImg[1].onclick = function()
+        {
+            ProductImg.src = SmallImg[1].src;
+        }
+        SmallImg[2].onclick = function()
+        {
+            ProductImg.src = SmallImg[2].src;
+        }
+        SmallImg[3].onclick = function()
+        {
+            ProductImg.src = SmallImg[3].src;
+        }
+</script>
+{% endblock content %}

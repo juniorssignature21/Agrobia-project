@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="product-banner">
+        <h1>
+            Shopping Cart
+        </h1>
+        <div class="route">
+            <a href="">Home</a>&nbsp; /
+            <a href="">Shop</a>&nbsp;/
+            <a href="">Single Product</a>
+        </div>
+    </div>
+    <div class="null-shop">
+        <h1>
+            You have not added any item to cart!!!
+        </h1>
+        <a href="{% url "shop" %}">
+            Continue Shopping
+        </a>
+    </div>
+    <script>
+        const images = [
+        '{% static "image/banner3.png" %}',
+        '{% static "image/banner.png" %}', // Replace with actual paths to your images
+        //'image/third.jpg'
+    ];
+    
+    let currentImageIndex = 0;
+    
+    function changeBackgroundImage() {
+        const header = document.querySelector('.product-banner');
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        header.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('${images[currentImageIndex]}')`;
+    }
+    
+    setInterval(changeBackgroundImage, 3000); // Change image every 3 seconds
+    
+        
+</script>
+{% endblock content %}

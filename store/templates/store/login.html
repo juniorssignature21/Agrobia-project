@@ -1,0 +1,61 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "styles/styles.css" %}">
+</head>
+<body>
+    <div class="login-form">
+        
+            <img src="{% static "image/amico.png" %}" alt="">
+        <form action="{% url "login" %}" method="POST">
+                {% csrf_token %}
+                <div class="form-div">
+                        
+                                <div class="title">
+                                    <h3>
+                                        Login
+                                    </h3>
+                                </div>
+                                <br>
+                                <div class="google-auth login">
+                                    <a  href=''>
+                                        <i class="bi bi-google"></i>
+                                        &nbsp;
+                                        <b>Login with Google</b>
+                                    </a> 
+                                </div>
+                                <br><br>       
+                        <input type="text" class="form-control" name="username" placeholder="Enter your email address...">                       
+                
+                    <input type="password" class="form-control" name="password" placeholder="Enter your password...">
+                    
+                    <div class="t_c">
+                        <input type="checkbox" name="" id="" checked>
+                        <small>
+                            Remember me.
+                        </small>
+                    </div>
+                        <button type="submit" class="form-btn">
+                            Login
+                        </button>
+                        <br>
+                        <br>
+                        <center>
+                            <small>
+                                <a href="{% url "register" %}">
+                                    Don't Have an Account?
+                                </a>
+                            </small>
+                        </center>
+                    </div>
+        </form>
+    </div>
+</body>
+</html>
+
+                

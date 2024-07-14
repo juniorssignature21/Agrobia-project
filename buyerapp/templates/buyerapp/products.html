@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="product-banner">
+    <h1>
+        Shop List
+    </h1>
+    <div class="route">
+        <a href="">Home</a>&nbsp; /
+        <a href="">Shop</a>&nbsp;/
+        <a href="">Single Product</a>
+    </div>
+</div>
+
+      <section class="products">
+        {% comment %}
+        <div class="filter">
+          <h2>Categories</h2>
+          <ul>
+            <li><a href="{% url "categories" "fertilizers" %}">Fruits</a></li>
+            <li><input type="checkbox" /> Vegetables</li>
+            <li><input type="checkbox" /> Food</li>
+            <li><input type="checkbox" /> Meat</li>
+          </ul>
+          <input type="checkbox" name="" id="">
+          <select name="" id="">
+            
+          </select>
+        </div>
+        {% endcomment %}
+
+        <div class="product-list">
+          <div class="search-bar">
+            <form action="{% url "shop" %}" method="GET">
+              {% csrf_token %}
+              <div class="search">
+                <input name="q" placeholder="search products">
+                <button type="submit"><b>Search</b></button>
+              </div>
+            </form>
+          </div>
+          <div class="products-grid">
+            <!-- Product cards -->
+            {% if products %}
+            {% for product in products %}
+            <a href="{% url 'product' product.id %}">
+             <div class="product-card">
+               <img src="{{product.image.url}}" alt="Apple" />
+              
+              <h3>{{product.name}}</h3>
+               <small>
+                {{product.categories}}
+              </small>
+              <span class="stars" style="color: yellow">★★★★★</span>
+               <p>#{{product.price}}</p>
+               {% comment %} <a href="{% url "product" product.id %}">
+                view product
+               </a> {% endcomment %}
+                
+                 {% comment %} <button type="button" class="addtocart" value="{{product.id}}" id="add-cart">Add to cart</button> {% endcomment %}
+                 
+                </div>
+              </a>
+             {% endfor %}
+            
+          </div>
+          <div class="pagination">
+            <a href="#">&lt;</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">&gt;</a>
+          </div>
+        </div>
+        {% else %}
+        <div style="text-align: center; width: 90vw;">
+          <h1>
+            Results not found!
+          </h1>
+          <a href="{% url "shop" %}">
+            Continue Shopping
+          </a>
+        </div>
+        {% endif %}
+
+      </section>
+    
+    
+      
+{% include "footer.html" %}
+{% endblock %}

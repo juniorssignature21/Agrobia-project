@@ -1,0 +1,33 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "styles/styles.css" %}">
+{% block content %}
+<div class="product-div">
+    <h1>{{categories}}</h1>
+</div>
+<section class="products">
+    <div class="filter">
+      <h2>Categories</h2>
+      
+      <select name="" id="">
+        <a href="{% url "category" "fruits" %}"></a>
+      </select>
+    </div>
+
+    <div class="product-list">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for more products" />
+      </div>
+      <div class="products-grid">
+        <!-- Product cards -->
+         {% for productes in productss %}
+         <div class="product-card">
+           <img src="{{productes.image.url}}" alt="Apple" />
+           <h3>{{productes.name}}</h3>
+           <div class="stars" style="color: yellow">★★★★★</div>
+           <p>#{{productes.price}}</p>
+         </div>
+         {% endfor %}
+        </div>
+
+{% include "footer.html" %}
+{% endblock content %}

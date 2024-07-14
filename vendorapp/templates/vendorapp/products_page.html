@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section id='vendor-products'>
+        <div id="activity"> 
+        {% include "vendorapp/activity_components.html" %}
+        </div>
+        <div class='product-container'>
+            <div class="product_overflow">
+                <div class="vendor-info">
+                    <img src="{% static "image/buy-1.jpg" %}" alt="">
+                    <div  onclick="Activity()" style="cursor: pointer;">
+                        🔔
+                </div>
+                    <h4>Business Name: <br>{{vendors.business_name|capfirst}}</h4>
+                    <hr>
+                    <p>
+                        {{vendors.store_description}}
+                    </p>
+                </div>
+                <br><br>
+                {% if products %}
+                <div class="prods">
+                        {% for product in products %}
+                                <div class='prod_div'>
+                                    <img src="{{ product.image.url }}" alt="{{product.name}}">
+                                    <div class="product_desc">
+                                        <a href="{% url "product" product.id %}">
+                                            <p>
+                                                {{product.name}}
+                                            </p>
+                                        </a>
+                                    {% comment %} <p>Price: {{ product.price }}</p> {% endcomment %}
+                                    {% comment %} <p>Stock: {{ product.stock }}</p> {% endcomment %}
+                                    <p>{{ product.description|slice:30 }}...</p>
+                                    </div>
+                                </div>
+                                <br>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                        <center>
+                            <p>No products found. </p>
+                            <br>
+                            <a href="{% url 'products-upload' %}" style="display: inline-block; width=:300px; padding: 10px; background-color: #DB5B3F; margin: 20px; text-decoration: none; color: #fff;">Upload a product</a>
+                            
+                        </center>
+                        {% endif %}
+            </div>
+        </div>
+            </section>
+
+<script>
+    function Activity() {
+        const dropdownMenu = document.getElementById('activity');
+        if (dropdownMenu.style.display === 'flex') {
+          dropdownMenu.style.display = 'none';
+        } else {
+          dropdownMenu.style.display = 'flex';
+          dropdownMenu.style.alignItems = 'center';
+          dropdownMenu.style.justifyContent = 'space-around';
+          dropdownMenu.style.flexDirection = 'column';
+        }
+      }
+</script>
+{% endblock content %}
+

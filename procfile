@@ -1,0 +1,1 @@
+web: gunicorn agrobiaproject.wsgi --log-file -

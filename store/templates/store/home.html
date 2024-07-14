@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+{% load static %}
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "styles/indexs.css" %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"> {% endcomment %}
+
+{% comment %} </head>
+<body>
+    {% include "homenav.html" %}
+     {% endcomment %}
+     {% block content %}
+     <div class="banner-div">
+        <h3>
+            Welcome To Agrobia
+        </h3>
+        <p>
+            Step into the future of agriculture with agrobia, where innovation meets sustainability.
+            Optimize your farming with precision tools, real time data, and analytics for a smarter, greener, and more profitable harvest
+        </p>
+        <div class="btn-div">
+            
+            <a href="{% url "shop" %}">
+                    <span></span>
+                    Explore Our Market
+                </a>
+            
+            
+                <a href="{% url "check-vendor-status" %}">
+                    <span></span>
+                    Become a seller
+                </a>
+            
+        </div>
+    </div>
+    <section id="service">
+
+        <div class="title">
+            <h3>
+                Our Services
+            </h3>
+        </div>
+        <div id="services">
+            <div class="service-div">
+                <img src="{% static "image/service1.png" %}" alt="">
+                <p>
+                    <b>Direct marketplace access:</b>
+                    <br>
+                    Connect buyers directly with farm producers
+                </p>
+            </div>
+            <div class="service-div">
+                <img src="{% static "image/service2.png" %}" alt="">
+                <p>
+                    <b>
+                        Inventory and Order Management:
+                    </b>
+                    <br>
+                    Provide tools for sellers to manage inventory and track orders efficiently.
+                </p>
+            </div>
+            <div class="service-div">
+                <img src="{% static "image/service3.png" %}" alt="">
+                <p>
+                    <b>
+                        Logistics and shipping:
+                    </b>
+                    <br>
+                    Reliable and efficient delivery of products and ensuring it meets your business goals.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--===============Categories=============-->
+    <section id="category">
+        <div class="title">
+            <h3>
+                Categories
+            </h3>
+        </div>
+        <div class="categories">
+            {% for category in categories %}
+            <div class="category-div">
+                <img src="{{category.image.url}}" alt="">
+                <p>
+                    <b>
+                        {{category.name|capfirst}}
+                    </b>
+                    <br>
+                    {{category.description|slice:50}}...
+                </p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <!--==================About===================-->
+    <section id="about">
+        <img src="{% static "image/image 22.png" %}" alt="">
+        <div class="about">
+            <div class="about-text">
+                <h3>
+                    Fast and Quick Delivery
+                </h3>
+                <p>
+                    Our efficient logistics network ensures fast and free delivery of products within 48hrs
+                </p>
+            </div>
+            <div class="about-text">
+                <h3>
+                    Freshness Guaranteed
+                </h3>
+                <p>
+                    We guarantee the freshness and quality of our products, ensuring they reach you in the best condition
+                </p>
+            </div>
+            <div class="about-text">
+                <h3>
+                    Wide Selection
+                </h3>
+                <p>
+                    Our platform offers a diverse range of products, catering to various needs and preferences
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--==============products===============-->
+    <section id="products">
+        <div class="title">
+            <h3>
+                Products
+            </h3>
+        </div>
+        <div class="products-div">
+            
+            {% for products in product %}
+            <div class="product-div">
+                <img src="{{products.image.url}}" alt="">
+                {% comment %} <small>
+                    {{products.name}}
+                </small>
+                <br> {% endcomment %}
+                <small>
+                    {{products.name}}
+                </small>
+                <br>
+                <small>
+                    #{{products.price}}
+                </small>
+                <br>
+                {% comment %} <img src="{{productss.}}" alt=""> {% endcomment %}
+                <a href="{% url "product" products.id %}">
+                    <button>
+                        View Product
+                    </button>
+                </a>
+            </div>
+            {% endfor %}
+           
+            
+            
+        </div>
+        {% comment %} <br> {% endcomment %}
+            <a href='{% url "shop" %}'>
+            <div class="more-btn">
+                    View more
+                    &nbsp;
+                    &#8594;
+                </div>
+            </a>
+
+    </section>
+    <!--============================Testimonial==================================-->
+    <section id="testimonial">
+        <div class="title">
+            <h3>
+                Testimonial
+            </h3>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-div">
+                <img src="{% static "image/testimonial1.png" %}" alt="">
+                <div class="testimonials">
+                    <p>
+                        "I have tried several online grocery platforms, but this one offers the freshest and highest-quality products. I'm hooked."
+                    </p>
+                    <small>
+                        David k, Port Harcourt
+                    </small>
+                </div>
+            </div>
+            <div class="testimonial-div">
+                <img src="{% static "image/testimonial2.png" %}" alt="">
+                <div class="testimonials">
+                    <p>
+                        "I bought fresh organic produce from this platform and was impressed by the quality and taste! The delivery was fast and convenient."
+                    </p>
+                    <small>
+                        Rosemary Oguezuonu, Aba
+                    </small>
+                </div>
+            </div>
+        </div>
+        <a href="">
+        <div class="more-btn">
+            Learn More
+        </div>
+        </a>
+    </section>
+    <!--============================Blog==================================-->
+    <section id="blog">
+        <div class="title">
+            <h3>
+                Our Blog
+            </h3>
+        </div>
+        <div class="blog">
+            <div class="blog-div">
+                <div class="user-info">
+                    <img src="{% static "image/buy-1.jpg" %}" alt="">
+                    <small>
+                        Blessing favour
+                    </small>
+                    <small>
+                        April 20, 2024
+                    </small>
+                </div>
+                <br>
+                <img src="{% static "image/image 31.png" %}" alt="">
+                <p>
+                    Product Spotlight: Fresh tomatoes from agrobia
+                </p>
+            </div>
+            <div class="blog-div">
+                <div class="user-info">
+                    <img src="{% static "image/buy-1.jpg" %}" alt="">
+                    <small>
+                        Blessing favour
+                    </small>
+                    <small>
+                        April 20, 2024
+                    </small>
+                </div>
+                <br>
+                <img src="{% static "image/image 32.png" %}" alt="">
+                <p>
+                    From our farm to your table: Agrobia's farm to table philosophy
+                </p>
+            </div>
+            <div class="blog-div">
+                <div class="user-info">
+                    <img src="{% static "image/buy-1.jpg" %}" alt="">
+                    <small>
+                        Blessing favour
+                    </small>
+                    <small>
+                        April 20, 2024
+                    </small>
+                </div>
+                <br>
+                <img src="{% static "image/image 33.png" %}" alt="">
+                <p>
+                    From our farm to your table: Agrobia's farm to table slogan
+                </p>
+            </div>
+        </div>
+    </section>
+    {% include "footer.html" %}
+    <script>
+        function toggleMenu() {
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            if (dropdownMenu.style.display === 'flex') {
+              dropdownMenu.style.display = 'none';
+            } else {
+              dropdownMenu.style.display = 'flex';
+              dropdownMenu.style.alignItems = 'center';
+              dropdownMenu.style.justifyContent = 'space-around';
+            }
+          }
+          
+            const images = [
+            '{% static "image/banner2.png" %}',
+            '{% static "image/banner3.png" %}', // Replace with actual paths to your images
+            //'image/third.jpg'
+        ];
+        
+        let currentImageIndex = 0;
+        
+        function changeBackgroundImage() {
+            const header = document.querySelector('.banner-div');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            header.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('${images[currentImageIndex]}')`;
+        }
+        
+        setInterval(changeBackgroundImage, 3000); // Change image every 3 seconds
+        
+            
+    </script>
+     {% endblock content %}
+{% comment %} </body>
+</html> {% endcomment %}
